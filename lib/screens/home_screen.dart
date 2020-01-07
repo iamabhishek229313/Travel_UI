@@ -16,14 +16,14 @@ class _HomeScreenState extends State<HomeScreen> {
     FontAwesomeIcons.biking
   ];
   int _selectedIcon = 0;
-
+  int _currentTab = 1 ;
   @override
   Widget build(BuildContext context) {
     Widget _makeIcons(int index) {
       return new GestureDetector(
         onTap: () {
           setState(() {
-            _selectedIcon = index ;
+            _selectedIcon = index;
           });
         },
         child: new Container(
@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: new SafeArea(
         child: new ListView(
-          padding: const EdgeInsets.symmetric(vertical: 40.0),
+          padding: const EdgeInsets.symmetric(vertical: 20.0),
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 90),
@@ -56,17 +56,51 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            new SizedBox(height: 20.0,),
-            new Row(
-              mainAxisAlignment:  MainAxisAlignment.spaceAround,
-              children: _icons.asMap().entries.map((MapEntry map) => _makeIcons(map.key)).toList() 
+            new SizedBox(
+              height: 20.0,
             ),
-            new SizedBox(height: 15.0,),
+            new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: _icons
+                    .asMap()
+                    .entries
+                    .map((MapEntry map) => _makeIcons(map.key))
+                    .toList()),
+            new SizedBox(
+              height: 15.0,
+            ),
             TopDestination(),
-            new SizedBox(height: 15.0,),
-            HotelCarousal()
+            new SizedBox(
+              height: 15.0,
+            ),
+            HotelCarousal(),
           ],
         ),
+      ),
+      bottomNavigationBar: new BottomNavigationBar(
+        currentIndex: _currentTab,
+        onTap: (index) {
+          setState(() {
+            _currentTab = index ;
+          });
+        },
+        items: <BottomNavigationBarItem>[
+          new BottomNavigationBarItem(
+            icon: new Icon(Icons.search),
+            title: new SizedBox.shrink(),
+          ),
+          new BottomNavigationBarItem(
+            icon: new Icon(Icons.local_pizza),
+            title: new SizedBox.shrink(),
+          ),
+          new BottomNavigationBarItem(
+            icon: new CircleAvatar(
+              radius: 15.0,
+              backgroundImage: AssetImage('assets/images/CircleAccount.jpg'),
+            ),
+            title: new SizedBox.shrink()
+          ),
+        ],
       ),
     );
   }
