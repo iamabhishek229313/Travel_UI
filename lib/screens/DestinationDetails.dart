@@ -80,8 +80,51 @@ class _DestinationDetailsState extends State<DestinationDetails> {
                       ),
                     ),
                   ],
-                )
+                ),
               ],
+            ),
+            new Positioned(
+              bottom: 20.0,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                width: MediaQuery.of(context).size.width,
+                child: new Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    new Text(widget.des.city,
+                        style: new TextStyle(
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            letterSpacing: 1.2)),
+                    new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        new Row(
+                          children: <Widget>[
+                            new Icon(
+                              FontAwesomeIcons.locationArrow,
+                              color: Colors.grey,
+                              size: 15.0,
+                            ),
+                            new SizedBox(width: 10.0,),
+                            new Text(widget.des.country,
+                                style: new TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.grey,
+                                    fontSize: 14.0))
+                          ],
+                        ),
+                        new Icon(
+                          Icons.location_on,
+                          color: Colors.grey,
+                          size: 30.0,
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
             )
           ],
         )
